@@ -23,11 +23,15 @@ export default class Entrar extends React.Component {
     this.setState({
       loading: true
     });
-    let data = await getApi("/pessoas/0");
 
-    AsyncStorage.setItem('@Tokens:urlFoto', data.pessoa.foto);
-    AsyncStorage.setItem('@Tokens:email', data.pessoa.email);
-    AsyncStorage.setItem('@Tokens:nome', data.pessoa.nome);
+    let id = (Math.floor((Math.random() * 100) + 1));
+    let data = await getApi("/pessoas/"+id);
+    
+    try {
+      AsyncStorage.setItem('@Tokens:id', id);
+    } catch (error) {
+      alert(error);
+    }
 
     this.setState({
       loading: false
@@ -54,7 +58,7 @@ export default class Entrar extends React.Component {
             title='Entrar com Google+'
             button
             type='google-plus-official'
-            onPress={this.entrarGoogle}
+            onPress={this.entrarFacebook}
           />
         </ImageBackground>
     );

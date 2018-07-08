@@ -35,6 +35,19 @@ export default class Atividade extends React.Component {
     })
   }
 
+  contribuir = async ()  => {
+        this.state.atividade.contribuindo = true;
+      let result = await post('/atividades/'+this.state.atividade.id+'/contribuir/8');
+      Alert.alert(
+          'Muito Obrigado',
+          'Valeu, o morro'+this.state.atividade.pessoa.favela.nome+" agradece",
+          [
+              {text: 'Ok', onPress: () => console.log('ok')},
+          ],
+          { cancelable: false }
+      )
+  }
+
     renderItem = ({item}) => {
         return (
             <Grid>
@@ -101,7 +114,7 @@ export default class Atividade extends React.Component {
                                 </Row>
                             </Col>
                             <Col style={{alignItems: 'flex-end'}}>
-                                <TouchableOpacity onPress={() => this.contribuir(item)}>
+                                <TouchableOpacity onPress={() => this.contribuir()}>
                                     <Text style={{color:colors.blue,fontWeight:"bold"}}>Contribuir</Text>
                                 </TouchableOpacity>
                             </Col>

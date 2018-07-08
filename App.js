@@ -25,9 +25,9 @@ import Icon from 'react-native-vector-icons/dist/Ionicons';
 const Stack = StackNavigator(
   {
     Entrar: { screen: Entrar },
+    CadastrarAtividade: { screen: CadastrarAtividade },
     Mural: { screen: Mural },
     Atividade: { screen: Atividade },
-    CadastrarAtividade: { screen: CadastrarAtividade },
     Perfil: { screen: Perfil },
     Contribuicoes: { screen: Contribuicoes },
     Main: {

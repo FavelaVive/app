@@ -31,7 +31,7 @@ export default class Mural extends React.Component {
             loading: true
         });
 
-        let data = await getApi("/atividades/PE/Recife");
+        let data = await getApi("/atividades/PE/Recife?pessoaId=8");
         
         this.setState({
             loading: false,
@@ -59,6 +59,7 @@ export default class Mural extends React.Component {
     }
 
     contribuir = async (item)  => {
+        item.contribuindo = true;
         let result = await post('/atividades/'+item.id+'/contribuir/8');
         Alert.alert(
             'Muito Obrigado',
@@ -105,9 +106,18 @@ export default class Mural extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            <TouchableOpacity onPress={() => this.contribuir(item)}>
-                                <Text style={{color:colors.blue,fontWeight:"bold"}}>Contribuir</Text>
-                            </TouchableOpacity>
+                            {
+                                !item.contribuindo && (
+                                    <TouchableOpacity onPress={() => this.contribuir(item)}>
+                                        <Text style={{color:colors.blue,fontWeight:"bold"}}>Contribuir</Text>
+                                    </TouchableOpacity>
+                                )
+                            }
+                            {
+                                item.contribuindo && (
+                                    <Text style={{color:colors.blue,fontWeight:"bold",opacity:0.8}}>Contribuindo</Text>
+                                )
+                            }
                         </Col>
                         <Col style={{alignItems: 'flex-end'}}>
                             <TouchableOpacity onPress={() => this.openAtividade(item)}>

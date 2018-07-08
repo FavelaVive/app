@@ -11,7 +11,6 @@ export const getApi = async (url) => {
 }
 
 export const post = async (url, data) => {
-	let token = await AsyncStorage.getItem('@Tokens:access_token');
 	return fetch(API + url, {
         method: 'POST',
         body: JSON.stringify(data),
